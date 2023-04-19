@@ -1,13 +1,14 @@
+import React from "react";
 import C from "./C";
-function B() {
+import { Box } from "@chakra-ui/react";
+
+export default function B() {
   return (
     <>
-      <div className="border-2 border-black h-32 w-32 mb-3 bg-purple-200">
-        hello react! BBBBBBB
-      </div>
+      <Box w={100} h={100} bgColor="yellow.500">
+        B
+      </Box>
       <C />
     </>
   );
 }
-
-export default B;

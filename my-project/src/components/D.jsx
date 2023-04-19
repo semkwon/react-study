@@ -1,20 +1,35 @@
-import { useState } from "react";
+import { Button, Input, Box } from "@chakra-ui/react";
+import React, { useContext, useState } from "react";
+import { AppContext } from "src/App";
 
-function D() {
-  const [fruits, setFruits] = useState("");
-  const onSubmitCreate = () => console.log({ fruits });
+export default function D() {
+  const { names, handleAddNames } = useContext(AppContext);
+
+  const [과일, 과일변경] = useState("");
+
+  const onClickBtn = () => {
+    handleAddNames(과일);
+    과일변경(""); // 버튼을 누르게 되면 검색창에 초기화되도록 만들어줌.
+  };
+
   return (
     <>
-      <form onSubmit={onSubmitCreate}>
-        <input
-          type="text"
-          value={fruits}
-          onChange={(e) => setFruits(e.target.value)}
-        />
-        <input type="submit" value={"추 가"} />
-      </form>
+      <Input
+        mt={"20px"}
+        ml={"20px"}
+        placeholder="이름을 입력하세요."
+        width="auto"
+        focusBorderColor="pink.400"
+        borderColor={"black"}
+        onChange={(e) => 과일변경(e.target.value)}
+        value={과일}
+      />
+      <Button onClick={onClickBtn} ml={"20px"}>
+        추가
+      </Button>
+      <Box ml={"30px"} mt={"10px"} mb={"30px"}>
+        {names}
+      </Box>
     </>
   );
 }
-
-export default D;
